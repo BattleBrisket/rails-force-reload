@@ -1,12 +1,16 @@
+/Gemfile.lock
+/*.gem
+
+/gemfiles/.bundle/
+/gemfiles/*.gemfile.lock
+
 /.bundle/
 /.yardoc
-/Gemfile.lock
 /_yardoc/
 /coverage/
 /doc/
 /pkg/
 /tmp/
-/gemfiles/
 /log
 
 # Ignore pow environment settings

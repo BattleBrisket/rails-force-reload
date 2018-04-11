@@ -3,11 +3,14 @@ language: ruby
 cache: bundler
 
 rvm:
-  - 2.1.0
-  - 2.2.0
+  - 2.2.2
   - 2.3.0
   - 2.4.0
   - 2.5.0
-  - ruby-head
+
+gemfile:
+  - gemfiles/activerecord50.gemfile
+  - gemfiles/activerecord51.gemfile
+  - gemfiles/activerecord52.gemfile
 
 script: bundle exec rake test
