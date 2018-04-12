@@ -5,11 +5,13 @@
 Starting in v5.0, Rails removed the `force_reload` option from ActiveRecord association readers. This gem adds that functionality back in.
 
 ```
-# collection association (has_many)
+# Collection association (has_many)
+
 @user.posts(true)
 # or @user.posts.reload
 
-# singular association (has_one)
+# Singular association (has_one)
+
 @user.profile(true)
 # or @user.reload.profile
 # or @user.reload_profile
@@ -80,7 +82,7 @@ This is the recommended way to handle singular associations, given the side effe
 
 The "reload before/after" syntax, coupled with the introduction of a dynamic magic method to recover lost functionality would seem to be a net loss, when compared with the consistency of `@parent.association(true)`
 
-Looking at the meta, Singular and Collection associations behave differently, but are grouped and handled collectively, both within the Rails core and Rails-powered applications. The close relationship warrants maintaining parity where possible. This is obviously a matter of opinion, but was a factor of consideration for me.
+Looking at the meta, Singular and Collection associations behave differently, but are grouped and handled collectively, both within the Rails core and Rails-powered applications. The close relationship warrants maintaining parity where possible. This is obviously a matter of opinion, but was a factor of consideration.
 
 ## Development
 
