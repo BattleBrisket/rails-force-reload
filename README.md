@@ -26,6 +26,8 @@ Gemfile
 gem 'rails-force-reload'
 ```
 
+We recommend you insert this immediately after the `gem 'rails'` line, so that it's loaded in all appropriate Bundler groups.
+
 Command line
 ```
 gem install 'rails-force-reload'
@@ -38,11 +40,17 @@ gem install 'rails-force-reload'
 
 Tests are borrowed nearly verbatim from Rails source code.
 
-## Background
+## TL;DR
+
+In Rails 4.2, you could forcibly reload a model's association from the DB by passing a boolean `true` to the association caller. If we have a `User` model, with a `has_many :posts` association, then `user.posts(true)` would force Rails to pull all `Post` records from DB, even if they had previously been looked up and cached. This was useful when a script would make DB changes after an association was loaded.
+
+The boolean option was removed in 5.0, and users were directed to the `reload` method to achieve the same result. There's technically two methods -- under [`CollectionProxy`](http://api.rubyonrails.org/classes/ActiveRecord/Associations/CollectionProxy.html#method-i-reload) and [`Persistence`](http://api.rubyonrails.org/classes/ActiveRecord/Persistence.html#method-i-reload)), both of which already existed in the 4.x line.
 
 The decision to deprecate the `@parent.association(true)` syntax was intended to simplify the API (one way to reload associations), and better honor the Principle of Least Surprise ("what's this `true` mean here?"). See the [original Groups thread](https://groups.google.com/forum/#!topic/rubyonrails-core/6ZPPg1ZmjQA/discussion) and [initial pull request](https://github.com/rails/rails/pull/20888) for further context.
 
-We agree with the spirit of the decision, but it came with tradeoffs.
+We agree with the spirit of the decision's intent, but it comes with tradeoffs.
+
+## Background
 
 "Reload-only" syntax limits readability, specifically when conditionally reloading a given association. GitHub user [@heaven](https://github.com/heaven) offered a succinct example (in the [commit removing the functionality](https://github.com/rails/rails/commit/09cac8c67afdc4b2a1c6ae07931ddc082629b277#commitcomment-23704911), no less)
 
@@ -80,11 +88,13 @@ In addition, the behavior on a singular association is not a one-for-one match w
 
 This is the recommended way to handle singular associations, given the side effects of reloading the parent, however both methods will technically work.
 
-[DHH expressed satisfaction](https://groups.google.com/d/msg/rubyonrails-core/6ZPPg1ZmjQA/kTT-GKwew10J) with divergent handling to `has_one` vs `has_many` associations. Obviously, we (politely!) disagree with this assessment.
+[DHH expressed satisfaction](https://groups.google.com/d/msg/rubyonrails-core/6ZPPg1ZmjQA/kTT-GKwew10J) with divergent handling to `has_one` vs `has_many` associations. We (politely!) disagree with this assessment.
 
-The "reload before/after" syntax, coupled with the introduction of a dynamic magic method to recover lost functionality would seem to be a net loss. The universal consistency of `@parent.association(true)` also better supports _Least Surprise_ theory.
+##### Our totally subjective opinion
 
-Looking at the meta, Singular and Collection associations behave differently, but are grouped and handled collectively, both within the Rails core and Rails-powered applications. The close relationship warrants maintaining parity where possible.
+- The "reload before/after" syntax, coupled with the introduction of a dynamic magic method to recover lost functionality would seem to be a net loss.
+- The universal consistency of `@parent.association(true)` also better supports _Least Surprise_ theory.
+- Looking at the meta, `SingularAssociation` and `CollectionAssociation` behave a little differently, but are grouped and handled collectively, both within the Rails core and Rails-powered applications. The close relationship warrants maintaining parity where possible.
 
 ## Development
 
