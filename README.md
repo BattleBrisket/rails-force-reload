@@ -1,6 +1,7 @@
 # Rails `force_reload`
 
-[![Coverage Status](https://coveralls.io/repos/github/BattleBrisket/rails-force-reload/badge.svg?branch=master)](https://coveralls.io/github/BattleBrisket/rails-force-reload?branch=master)
+[![Gem Version](https://badge.fury.io/rb/rails-force-reload.svg)](https://badge.fury.io/rb/rails-force-reload)
+[![Build Status](https://travis-ci.org/BattleBrisket/rails-force-reload.svg?branch=master)](https://travis-ci.org/BattleBrisket/rails-force-reload)
 
 Starting in v5.0, Rails removed the `force_reload` option from ActiveRecord association readers. This gem adds that functionality back in.
 
