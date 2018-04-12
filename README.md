@@ -81,9 +81,9 @@ This is the recommended way to handle singular associations, given the side effe
 
 [DHH expressed satisfaction](https://groups.google.com/d/msg/rubyonrails-core/6ZPPg1ZmjQA/kTT-GKwew10J) with divergent handling to `has_one` vs `has_many` associations. Obviously, we (politely!) disagree with this assessment.
 
-The "reload before/after" syntax, coupled with the introduction of a dynamic magic method to recover lost functionality would seem to be a net loss, when compared with the consistency of `@parent.association(true)`
+The "reload before/after" syntax, coupled with the introduction of a dynamic magic method to recover lost functionality would seem to be a net loss. The universal consistency of `@parent.association(true)` also better supports _Least Surprise_ theory.
 
-Looking at the meta, Singular and Collection associations behave differently, but are grouped and handled collectively, both within the Rails core and Rails-powered applications. The close relationship warrants maintaining parity where possible. This is obviously a matter of opinion, but was a factor of consideration.
+Looking at the meta, Singular and Collection associations behave differently, but are grouped and handled collectively, both within the Rails core and Rails-powered applications. The close relationship warrants maintaining parity where possible.
 
 ## Development
 
