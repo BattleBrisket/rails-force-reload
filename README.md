@@ -48,7 +48,7 @@ The boolean option was removed in 5.0, and users were directed to the `reload` m
 
 The decision to deprecate the `@parent.association(true)` syntax was intended to simplify the API (one way to reload associations), and better honor the Principle of Least Surprise ("what's this `true` mean here?"). See the [original Groups thread](https://groups.google.com/forum/#!topic/rubyonrails-core/6ZPPg1ZmjQA/discussion) and [initial pull request](https://github.com/rails/rails/pull/20888) for further context.
 
-We agree with the spirit of the decision's intent, but it comes with tradeoffs.
+We agree with the spirit of the decision's intent, but it comes with tradeoffs the we feel warrant the effort of maintaining the original functionality.
 
 ## Background
 
