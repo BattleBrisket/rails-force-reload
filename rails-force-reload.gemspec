@@ -10,7 +10,9 @@ Gem::Specification.new do |s|
   s.authors       = ["Frank Koehl"]
   s.email         = ["fkoehl@gmail.com"]
   s.summary       = "Restore force_reload argument on ActiveRecord collection associations"
-  s.description   = ""
+  s.description   = <<-EOF
+    Starting in v5.0, Rails removed the `force_reload` option from ActiveRecord association readers. This gem adds that functionality back in.
+  EOF
   s.homepage      = "https://github.com/battlebrisket/rails-force-reload"
   s.license       = "MIT"
   s.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
@@ -19,15 +21,16 @@ Gem::Specification.new do |s|
 
   s.add_runtime_dependency 'activerecord', '>= 5.0', '< 6.0'
 
+  s.add_development_dependency 'activerecord', '>= 5.0', '< 6.0'
   s.add_development_dependency 'minitest'
   s.add_development_dependency 'rake'
   s.add_development_dependency "appraisal"
   s.add_development_dependency 'pry-byebug', '>= 0'
-  s.add_development_dependency 'coveralls', '>= 0.8.0'
+  s.add_development_dependency 'coveralls'
   s.add_development_dependency 'sqlite3'
   s.add_development_dependency "activesupport"
 
-  # we need Module#prepend
-  s.required_ruby_version = '>= 2.0'
+  # Rails 5.0 onward requires Ruby 2.2.2
+  s.required_ruby_version = '>= 2.2.2'
 
 end
