@@ -5,6 +5,7 @@ Coveralls.wear!
 
 require 'rails-force-reload'
 require 'fixtures/active_record'
+require 'minitest/autorun'
 
 class RFRTestCase < ActiveSupport::TestCase
 
